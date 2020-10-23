@@ -6,3 +6,4 @@ latex/
 cmake-build-debug/
 test/
 .idea/
+*.stackdump
