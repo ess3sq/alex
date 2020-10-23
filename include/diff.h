@@ -35,6 +35,11 @@
  */
 #define _ALEX_DIFF_H
 
+/**
+ * @brief Default value for the step of the approximation `dx` for the differential \f$\mathrm dx\f$
+ *
+ * @see alex_set_dx(), alex_get_dx(), alex_diff()
+ */
 #define ALEX_DEFAULT_DX 1e-9
 
 /**
@@ -50,7 +55,7 @@
  *
  * **Example**
  *
- * Let us consider \f$f = x^2 - 612\f$. We can search for a root within the interval \f$[10,30}\f$:
+ * Let us consider \f$f = x^2 - 612\f$. We can search for a root within the interval \f$[10,30]\f$:
  *
  *     alex_range *r = alex_make_range(10, 30);
  *     double approx = alex_secant_method(&test_secant, r, 5);
@@ -69,7 +74,7 @@
  *
  * **Notes**
  *
- * Results will vary from system to system. The above test was conducted on a Windows 10 machine, x86, 16GB RAM.
+ * Results will vary from system to system. The above test was conducted on a Windows 10 machine, x86_64, 16GB RAM.
  * We recommend that you investigate the optimal parameters (`range`, `iterations`) for your case before
  * accepting a result.
  *
@@ -90,14 +95,18 @@ double alex_secant_method(alex_func_1d f, alex_range *range, unsigned iterations
  * @param f the function to differentiate
  * @param x where to differentiate
  * @return the slope at x
+ *
+ * @see alex_set_dx(), alex_get_dx()
  */
 double alex_diff(alex_func_1d f, double x);
 
 /**
  * @brief Sets the `dx`-step for numeric differentiation of functions
  *
+ * If no value is set, the internal variable is set to @ref ALEX_DEFAULT_DX.
+ *
  * @param dx the `dx`-step
- * @see alex_set_dx(), alex_diff()
+ * @see ALEX_DEFAULT_DX, alex_get_dx(), alex_diff()
  */
 void alex_set_dx(double dx);
 
@@ -105,7 +114,7 @@ void alex_set_dx(double dx);
  * @brief Returns the `dx`-step for numeric differentiation of functions
  *
  * @returns the `dx`-step
- * @see alex_set_dx(), alex_diff()
+ * @see ALEX_DEFAULT_DX, alex_set_dx(), alex_diff()
  */
 double alex_get_dx(void);
 

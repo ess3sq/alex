@@ -88,11 +88,9 @@
 /**
  * @brief Returns the value of the flag which is currently set
  *
- * **Notes**
+ * @return the current flag
  *
- * This function does not set any flags
- *
- * @return the flag
+ * @see alex_set_flag()
  */
 int alex_get_flag(void);
 
@@ -105,6 +103,8 @@ int alex_get_flag(void);
  * This value is originally initialized to @ref ALEX_OK_FLAG.
  *
  * @param flag the new flag
+ *
+ * @see alex_get_flag()
  */
 void alex_set_flag(int flag);
 
