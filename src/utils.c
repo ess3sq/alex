@@ -22,8 +22,12 @@
 #include "../include/utils.h"
 
 void alex_mclear(void *ptr, size_t size) {
+    alex_mset(ptr, size, 0);
+}
+
+void alex_mset(void *ptr, size_t size, char val) {
     while (size-- > 0) {
-        *(char *) ptr = 0;
+        *(char *) ptr = val;
         ++ptr;
     }
 }

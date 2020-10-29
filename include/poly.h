@@ -230,7 +230,7 @@ double alex_poly_trail(alex_poly *poly);
  * Returns the coefficient at `index` (see @ref alex_poly for more information).
  * `index` should **not** be greater than the degree of the polynomial (@ref alex_poly.deg).
  * If it is, this function will be returning the leading coefficient (@ref alex_poly_lead()) and set @ref alex_get_flag()
- * to @ref ALEX_POLY_INDEX_GT_DEG.
+ * to @ref ALEX_POLY_INDEX_GT_DEG_FLAG.
  *
  * @param poly the polynomial
  * @param index the index of the coefficient

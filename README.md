@@ -1,4 +1,4 @@
-# ALEX C Lib
+# Overview
 
 Welcome to the documentation for ALEX. This static webpage
 was automatically generated with [Doxygen](www.doxygen.org).

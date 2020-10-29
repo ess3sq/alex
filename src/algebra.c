@@ -17,45 +17,31 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
+#include "../include/algebra.h"
+#include "../include/utils.h"
 #include "../include/flags.h"
-#include "../include/diff.h"
-#include "../include/integrate.h"
 
-static double dx_step = ALEX_DEFAULT_DX;
-
-double alex_secant_method(alex_func_1d f, alex_range *range, unsigned iterations) {
-    if (iterations == 0) {
-        alex_set_flag(ALEX_INV_PARAM_FLAG);
-        return 0.;
+unsigned int alex_gcd(unsigned int m, unsigned int n) {
+    if (m == 0 && n == 0) {
+        alex_set_flag(ALEX_ALG_INV_OP_FLAG);
+        return 0;
     }
-
-    double x0, x1, x2;
-    x0 = range->min;
-    x1 = range->max;
-
-    for (int i = 0; i < iterations; ++i) {
-        x2 = x1 - f(x1) * (x1 - x0) / (f(x1) - f(x0));
-        x0 = x1;
-        x1 = x2;
+    else if(n < m) {
+        alex_swap_int(m,n);
     }
-
-    return x2;
-}
-
-double alex_diff(alex_func_1d f, double x) {
-    double dx = x * dx_step;
-    return (f(x + dx) - f(x)) / dx;
-}
-
-void alex_set_dx(double dx) {
-    if (dx < 0) {
-        alex_set_flag(ALEX_NEG_DX);
-        return;
-    }
-    dx_step = dx;
     alex_set_flag(ALEX_OK_FLAG);
+
+    int r;
+    while(1) {
+        r = m % n;
+        if (r == 0) return n;
+        m = n;
+        n = r;
+    }
 }
 
-double alex_get_dx(void) {
-    return dx_step;
+unsigned int alex_lcm(unsigned int m, unsigned int n) {
+    alex_set_flag(ALEX_OK_FLAG);
+    if (m == 0 && n == 0) return 0;
+    return m*n/alex_gcd(m,n);
 }

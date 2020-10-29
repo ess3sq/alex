@@ -25,11 +25,16 @@
  *
  * This header contains both differential calculus routines as well as general numeric
  * calculus operations.
+ *
+ * **Notes**
+ * - \f$n\f$-fold differentiation is not implemented at this time. You may have to iterate \f$n\f$-times
+ *   and differentiate through each iteration.
  */
 
 #include "func.h"
 
 #ifndef _ALEX_DIFF_H
+
 /**
  * @brief Include guard for this file
  */
@@ -40,7 +45,7 @@
  *
  * @see alex_set_dx(), alex_get_dx(), alex_diff()
  */
-#define ALEX_DEFAULT_DX 1e-9
+#define ALEX_DEFAULT_DX 1e-8
 
 /**
  * @brief Uses the secant method to determine a root of the function
@@ -55,8 +60,12 @@
  *
  * **Example**
  *
- * Let us consider \f$f = x^2 - 612\f$. We can search for a root within the interval \f$[10,30]\f$:
+ * Let us consider \f$f(x) = x^2 - 612\f$. We can search for a root within the interval \f$[10,30]\f$:
  *
+ *     double test_secant(double x) {
+ *         return x*x - 612;
+ *     }
+ *     // ...
  *     alex_range *r = alex_make_range(10, 30);
  *     double approx = alex_secant_method(&test_secant, r, 5);
  *     printf("Root of test func: %.10f\n", approx);
@@ -91,6 +100,10 @@ double alex_secant_method(alex_func_1d f, alex_range *range, unsigned iterations
  * This function returns the derivative (slope) of a given function @ref alex_func_1d. If the
  * function is not continuos / smooth at the point \f$x\f$, the result may not
  * be mathematically accurate.
+ *
+ * Moreover, in cases of division by zero, this function will perform the operation blindly
+ * and the routine which called it will have to deal with the consequences. As such, it is
+ * up to the user to make sure their @ref alex_func_1d is well-defined.
  *
  * @param f the function to differentiate
  * @param x where to differentiate

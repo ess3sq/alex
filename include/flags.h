@@ -61,27 +61,35 @@
 #define _ALEX_FLAGS_H
 
 /**
- * Info flag indicating that all is well (status: OK) */
+ * @brief Info flag indicating that all is well (status: OK) */
 #define ALEX_OK_FLAG 0
 /**
- * Info flag indicating that dynamic allocation failed (see errno code for more information)
+ * @brief Info flag indicating that dynamic allocation failed (see errno code for more information)
  */
 #define ALEX_BAD_ALLOC_FLAG 101
 /**
- * Info flag indicating that a function was called with wrong args
+ * @brief Info flag indicating that a function was called with wrong args
  */
 #define ALEX_INV_PARAM_FLAG 102
 /**
- * Info flag indicating that an operation was attempted with the coefficient's `index` argument greater
+ * @brief Info flag indicating that an algebraic operation was attempted on an illegal argument set (ie. 0 division)
+ */
+#define ALEX_ALG_INV_OP_FLAG 201
+/**
+ * @brief Info flag indicating that an operation was attempted with the coefficient's `index` argument greater
  * than the degree of the polynomial
  */
-#define ALEX_POLY_INDEX_GT_DEG 401
+#define ALEX_POLY_INDEX_GT_DEG_FLAG 401
 /**
- * Info flag indicating that the creation of a range struct failed because of the args supplied
+ * @brief Infor flag indicating an overflow of the factorial value
  */
-#define ALEX_INV_RANGE_FLAG 501
+#define ALEX_FACT_OVERFLOW_FLAG 501
 /**
- * Info flag indicating a call to @ref alex_set_dx() with a negative argument
+ * @brief Info flag indicating that the creation of a range struct failed because of the args supplied
+ */
+#define ALEX_INV_RANGE_FLAG 506
+/**
+ * @brief Info flag indicating a call to @ref alex_set_dx() with a negative argument
  */
 #define ALEX_NEG_DX 601
 

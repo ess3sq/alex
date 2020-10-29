@@ -92,7 +92,7 @@ unsigned int alex_poly_deg(alex_poly *poly) {
 
 double alex_poly_coeff(alex_poly *poly, unsigned int index) {
     if (index > poly->deg) {
-        alex_set_flag(ALEX_POLY_INDEX_GT_DEG);
+        alex_set_flag(ALEX_POLY_INDEX_GT_DEG_FLAG);
         return alex_poly_lead(poly);
     }
 
